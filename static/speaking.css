@@ -1,0 +1,86 @@
+html,
+body {
+  height: 100%;
+  background-color: #414382;
+}
+
+.form-signin {
+  max-width: 700px;
+  padding: 1rem;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.emoji-container {
+  position: relative;
+  width: 100%; /* Sesuaikan lebar container sesuai kebutuhan */
+  max-width: 1000px; /* Atur lebar maksimum */
+  height: auto; /* Menggunakan tinggi otomatis agar responsif */
+  padding-bottom: 200px;
+}
+
+.emoji {
+  background-color: #414382;
+  border-radius: 50%;
+  width: 100%; /* Emoji mengisi seluruh lebar container */
+  padding-bottom: 100%; /* Mengatur tinggi emoji sesuai dengan lebarnya */
+  position: relative;
+  stroke: black;
+  stroke-width: 15px;
+}
+
+.eye {
+  background-color: #00fcff;
+  border-radius: 50%;
+  width: 15%; /* Sesuaikan ukuran mata sesuai kebutuhan */
+  height: 15%; /* Sesuaikan ukuran mata sesuai kebutuhan */
+  position: absolute;
+}
+
+.left-eye {
+  left: 30%; /* Sesuaikan posisi mata sesuai kebutuhan */
+  top: 35%; /* Sesuaikan posisi mata sesuai kebutuhan */
+}
+
+.right-eye {
+  right: 30%; /* Sesuaikan posisi mata sesuai kebutuhan */
+  top: 35%; /* Sesuaikan posisi mata sesuai kebutuhan */
+}
+
+.mouth {
+  background-color: white;
+  border-radius: 0 0 50% 50%;
+  width: 40%; /* Sesuaikan ukuran mulut sesuai kebutuhan */
+  height: 20%; /* Sesuaikan ukuran mulut sesuai kebutuhan */
+  position: absolute;
+  bottom: 15%; /* Sesuaikan posisi mulut sesuai kebutuhan */
+  left: 50%;
+  transform: translateX(-50%);
+  animation: talk 1s infinite alternate;
+}
+
+@keyframes talk {
+  0% {
+      transform: translateX(-50%) scaleY(1);
+  }
+  50% {
+      transform: translateX(-50%) scaleY(0.6);
+  }
+  100% {
+      transform: translateX(-50%) scaleY(1);
+  }
+}

@@ -1,0 +1,361 @@
+body {
+  font-family: "Poppins", Helvetica;
+  margin: 0;
+  padding: 0;
+}
+
+@media only screen and (min-width: 400px) {
+  /* For tablets: */
+  .bulatatas {
+    margin-top: -50px;
+    margin-right: -12px;
+	  clip-path: circle(100% at 100% 0%);
+    width:calc(180vw / 8);
+    height:calc(180vw / 8);
+    background-color: #2776e9;
+  }
+  .bulatbawah {
+    margin-top: -100px;
+    margin-left: -80px;
+    clip-path: circle(100% at 0% 150%);
+    width:calc(200vw / 6);
+    height:calc(200vw / 6);
+    background-color: #2776e9;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  /* For tablets: */
+  .bulatatas {
+    margin-top: -50px;
+    margin-right: -12px;
+	  clip-path: circle(100% at 100% 0%);
+    width:calc(200vw / 8);
+    height:calc(200vw / 8);
+    background-color: #2776e9;
+  }
+  .bulatbawah {
+    margin-top: -150px;
+    margin-left: -150px;
+    clip-path: circle(100% at 0% 150%);
+    width:calc(200vw / 6);
+    height:calc(200vw / 6);
+    background-color: #2776e9;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .bulatatas {
+    margin-top: -50px;
+    margin-right: -12px;
+	  clip-path: circle(100% at 100% 0%);
+    width:calc(100vw / 10);
+    height:calc(100vw / 10);
+    background-color: #2776e9;
+  }
+  .bulatbawah {
+    margin-left: -320px;
+    margin-top: -135px;
+    clip-path: circle(100% at 0% 100%);
+    width:calc(100vw / 10);
+    height:calc(100vw / 10);
+    background-color: #2776e9;
+  }
+}
+
+.btn-speak {
+  background-color: #bad2f5;
+  padding: 20px;
+}
+
+.speak-removebg {
+  width: 200px;
+  padding: 50px;
+  object-fit: cover;
+}
+
+/* SPEAKING.HTML */
+
+.emoji-container {
+  position: relative;
+  width: 50%; /* Sesuaikan lebar container sesuai kebutuhan */
+  max-width: 200px; /* Atur lebar maksimum */
+  height: auto; /* Menggunakan tinggi otomatis agar responsif */
+}
+
+.emoji {
+  background-color: #414382;
+  border-radius: 50%;
+  width: 100%; /* Emoji mengisi seluruh lebar container */
+  padding-bottom: 100%; /* Mengatur tinggi emoji sesuai dengan lebarnya */
+  position: relative;
+  stroke: black;
+  stroke-width: 15px;
+}
+
+.eye {
+  background-color: #00fcff;
+  border-radius: 50%;
+  width: 15%; /* Sesuaikan ukuran mata sesuai kebutuhan */
+  height: 15%; /* Sesuaikan ukuran mata sesuai kebutuhan */
+  position: absolute;
+}
+
+.left-eye {
+  left: 30%; /* Sesuaikan posisi mata sesuai kebutuhan */
+  top: 35%; /* Sesuaikan posisi mata sesuai kebutuhan */
+}
+
+.right-eye {
+  right: 30%; /* Sesuaikan posisi mata sesuai kebutuhan */
+  top: 35%; /* Sesuaikan posisi mata sesuai kebutuhan */
+}
+
+.mouth {
+  background-color: white;
+  border-radius: 0 0 50% 50%;
+  width: 40%; /* Sesuaikan ukuran mulut sesuai kebutuhan */
+  height: 20%; /* Sesuaikan ukuran mulut sesuai kebutuhan */
+  position: absolute;
+  bottom: 15%; /* Sesuaikan posisi mulut sesuai kebutuhan */
+  left: 50%;
+  transform: translateX(-50%);
+  animation: talk 1s infinite alternate;
+}
+
+@keyframes talk {
+  0% {
+      transform: translateX(-50%) scaleY(1);
+  }
+  50% {
+      transform: translateX(-50%) scaleY(0.6);
+  }
+  100% {
+      transform: translateX(-50%) scaleY(1);
+  }
+}
+
+
+/* .home-fix .overlap-wrapper {
+  background-color: #232552;
+  overflow: hidden;
+  width: 1440px;
+  height: 1024px;
+}
+
+.home-fix .overlap {
+  position: relative;
+  width: 2045px;
+  height: 1667px;
+  top: -307px;
+  left: -318px;
+}
+
+.home-fix .rectangle {
+  position: absolute;
+  width: 1440px;
+  height: 1024px;
+  top: 307px;
+  left: 318px;
+  background-color: #ffffff;
+}
+
+.home-fix .text-wrapper {
+  position: absolute;
+  width: 465px;
+  top: 431px;
+  left: 806px;
+  font-family: "Poppins", Helvetica;
+  font-weight: 700;
+  color: #000000;
+  font-size: 40px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.home-fix .div {
+  position: absolute;
+  top: 939px;
+  left: 1155px;
+  font-family: "Poppins", Helvetica;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 48px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.home-fix .text-wrapper-2 {
+  position: absolute;
+  top: 895px;
+  left: 633px;
+  font-family: "Poppins", Helvetica;
+  font-weight: 700;
+  color: #000000;
+  font-size: 40px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.home-fix .text-wrapper-3 {
+  position: absolute;
+  top: 895px;
+  left: 1224px;
+  font-family: "Poppins", Helvetica;
+  font-weight: 700;
+  color: #000000;
+  font-size: 40px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.home-fix .user-dapat-melakukan {
+  position: absolute;
+  width: 420px;
+  top: 983px;
+  left: 521px;
+  font-family: "Poppins", Helvetica;
+  font-weight: 400;
+  color: #757575;
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.home-fix .span {
+  font-family: "Poppins", Helvetica;
+  font-weight: 400;
+  color: #757575;
+  font-size: 20px;
+  letter-spacing: 0;
+}
+
+.home-fix .text-wrapper-4 {
+  font-style: italic;
+}
+
+.home-fix .p {
+  position: absolute;
+  width: 420px;
+  top: 983px;
+  left: 1135px;
+  font-family: "Poppins", Helvetica;
+  font-weight: 400;
+  color: #757575;
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.home-fix .group {
+  position: absolute;
+  width: 202px;
+  height: 71px;
+  top: 1122px;
+  left: 631px;
+}
+
+.home-fix .overlap-group {
+  position: relative;
+  width: 200px;
+  height: 71px;
+  background-color: #bad2f5;
+  border-radius: 20px;
+}
+
+.home-fix .text-wrapper-5 {
+  position: absolute;
+  top: 21px;
+  left: 54px;
+  font-family: "Poppins", Helvetica;
+  font-weight: 700;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.home-fix .overlap-group-wrapper {
+  position: absolute;
+  width: 202px;
+  height: 71px;
+  top: 1129px;
+  left: 1244px;
+}
+
+.home-fix .ellipse-wrapper {
+  position: absolute;
+  width: 310px;
+  height: 314px;
+  top: 545px;
+  left: 576px;
+  background-color: #4987e4;
+  border-radius: 155px/157px;
+}
+
+.home-fix .ellipse {
+  height: 314px;
+  background-color: #ffffff9e;
+  border-radius: 155px/157px;
+  box-shadow: 0px 4px 4px #00000040, 0px 4px 4px #00000040;
+}
+
+.home-fix .div-wrapper {
+  position: absolute;
+  width: 310px;
+  height: 314px;
+  top: 545px;
+  left: 1190px;
+  background-color: #4987e4;
+  border-radius: 155px/157px;
+}
+
+.home-fix .speak-removebg {
+  position: absolute;
+  width: 150px;
+  height: 143px;
+  top: 631px;
+  left: 660px;
+  object-fit: cover;
+}
+
+.home-fix .images {
+  position: absolute;
+  width: 143px;
+  height: 143px;
+  top: 631px;
+  left: 1274px;
+  object-fit: cover;
+}
+
+.home-fix .logo {
+  position: absolute;
+  width: 224px;
+  height: 117px;
+  top: 339px;
+  left: 376px;
+  object-fit: cover;
+}
+
+.home-fix .ellipse-2 {
+  position: absolute;
+  width: 545px;
+  height: 545px;
+  top: 1122px;
+  left: 0;
+  background-color: #2776e9;
+  border-radius: 272.5px;
+}
+
+.home-fix .ellipse-3 {
+  position: absolute;
+  width: 545px;
+  height: 545px;
+  top: 0;
+  left: 1500px;
+  background-color: #2776e9;
+  border-radius: 272.5px;
+} */
