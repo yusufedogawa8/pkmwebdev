@@ -7,6 +7,10 @@ app = Flask(__name__, static_url_path='/static')
 def index():
     return render_template('index.html')
 
+@app.route('/catspeaking.html')
+def category():
+    return render_template('catspeaking.html')
+
 @app.route('/speaking.html', methods=['GET'])
 def speaking():
     # Render the speaking.html page
