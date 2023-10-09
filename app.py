@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, jsonify
 import subprocess
 
 app = Flask(__name__, static_url_path='/static')
@@ -11,10 +11,20 @@ def index():
 def category():
     return render_template('catspeaking.html')
 
-@app.route('/speaking.html', methods=['GET'])
+@app.route('/activity.html', methods=['GET'])
 def speaking():
-    # Render the speaking.html page
-    return render_template('speaking.html')
+    # Render the activity.html page
+    return render_template('activity.html')
+
+@app.route('/get_speech_result', methods=['GET'])
+def get_speech_result():
+    try:
+        with open("error.txt", "r") as error_file:
+            error_message = error_file.read()
+    except FileNotFoundError:
+        error_message = "Pesan kesalahan tidak ditemukan."
+
+    return jsonify({'result': error_message})
 
 @app.route('/run_main', methods=['POST'])
 def run_main():

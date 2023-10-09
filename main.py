@@ -1,73 +1,46 @@
 import speech_recognition as sr
-import os
-import pygame
 import pyttsx3
 from gtts import gTTS
-from PIL import Image
+import pygame  # Import modul pygame
+import time
 
-
-mp3_file_path = r"1.mp3"
-mp3_file_path1 = r"2.mp3"
-mp3_file_path2 = r"3.mp3"
-mp3_file_path3 = r"4.mp3"
-
-def show_gif(file_path):
-    img = Image.open(file_path)
-    img.show()
-
-def play_mp3(file_path):
-    pygame.mixer.init()
-    pygame.mixer.music.load(file_path)
-    pygame.mixer.music.play()
-    while pygame.mixer.music.get_busy():
-        pygame.time.Clock().tick(10)
+mp3_file_path = r"awal.mp3"
 
 def speak(text, lang='de'):
     tts = gTTS(text=text, lang=lang)
     tts.save("output.mp3")
     play_mp3("output.mp3")
 
-def speech_to_text():
-    # Buat objek recognizer
-    recognizer = sr.Recognizer()
+def play_mp3(filename):
+    pygame.mixer.init()
+    pygame.mixer.music.load(filename)
+    pygame.mixer.music.play()
+    while pygame.mixer.music.get_busy():
+        pygame.time.Clock().tick(10)
 
-    print("Robot: Hello! Ich bin Adyadroid.")
-    speak("Hello! Ich bin Adyadroid.")
+def speech_to_text():
+    recognizer = sr.Recognizer()
+    recognizer.energy_threshold = 1000
+
+    print("Robot: Hallo! Ich bin Adyadroid. Klicken Sie auf „Start“, um die Aktivität zu starten.")
+    speak("Hallo! Ich bin Adyadroid. Klicken Sie auf „Start“, um die Aktivität zu starten")
 
     while True:
-        # Menggunakan microphone sebagai source
         with sr.Microphone() as source:
-            print("User: ", end="")
-            recognizer.adjust_for_ambient_noise(source)  # Menghilangkan noise lingkungan
-            audio = recognizer.listen(source)  # Mendengarkan audio
+            recognizer.adjust_for_ambient_noise(source)
+            audio = recognizer.listen(source)
 
             try:
-                # Konversi audio menjadi teks menggunakan Google Web Speech API
-                text = recognizer.recognize_google(audio, language="id-ID")
+                text = recognizer.recognize_google(audio, language="de-DE")
+                text = text.lower()
                 print(text)
-                if text == "a":
-                    play_mp3(mp3_file_path)
-                elif text == "b":
-                    play_mp3(mp3_file_path1)
-                elif text == "c":
-                    play_mp3(mp3_file_path2)
-                elif text == "d":
-                    play_mp3(mp3_file_path3)
-                elif text == "show gif":
-                    gif_file_path = "D:/Tugas Kuliah/Semester 5/sample.gif"  # Ganti dengan path ke file GIF Anda
-                    show_gif(gif_file_path)
-                elif text == "stop":
-                    break  # Menghentikan perulangan jika user mengucapkan "stop"
-                else:
-                    print("Robot: Ich habe das nicht verstanden.")
-                    speak("Ich habe das nicht verstanden.")
-
+                break
             except sr.UnknownValueError:
-                print("Leider kann ich Ihre Rede nicht erkennen.")
-                speak("Leider kann ich Ihre Rede nicht erkennen.")
+                error_message = "Robot: Entschuldigung, ich habe dich nicht verstanden."
+                with open("error.txt", "w") as error_file:
+                    error_file.write(error_message)
             except sr.RequestError as e:
-                print("Im Spracherkennungsdienst ist ein Fehler aufgetreten; {0}".format(e))
-                speak("Im Spracherkennungsdienst ist ein Fehler aufgetreten; {0}".format(e))
+                print("Robot: Es gab einen Fehler bei der Anfrage. {0}".format(e))
 
 if __name__ == "__main__":
     speech_to_text()
