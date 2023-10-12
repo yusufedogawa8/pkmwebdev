@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="author" content="Adyadroid Team">
   <meta name="generator" content="Hugo 0.118.2">
-  <title>Welcome | Adyadroid</title>
+  <title>Introduction | Adyadroid</title>
   <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -33,9 +33,9 @@
                 <div class="eye right-eye"></div>
                 <div class="mouth"></div>
               </div>
-              <a href="activity.html" id="startbutton" class="btn btn-outline-light fs-3 fade-in-button" style="border-radius: 100px; padding-left: 50px; padding-right: 50px;">
-                START&nbsp; <i class="fa-solid fa-arrow-right fa-beat fa-sm"></i>
-              </a>
+<!--              <a href="activity.html" id="startbutton" class="btn btn-outline-light fs-3 fade-in-button" style="border-radius: 100px; padding-left: 50px; padding-right: 50px;">-->
+<!--                START&nbsp; <i class="fa-solid fa-arrow-right fa-beat fa-sm"></i>-->
+<!--              </a>-->
             </div>
           </div>
         </div>
@@ -44,23 +44,23 @@
     <div id="result-container" class="text-center mt-4"></div>
   </main>
   <script>
-        // Menjalankan main.py saat halaman speaking.html dimuat
-        fetch('/run_main', {
+        // Menjalankan speaking.py saat halaman introduction.html dimuat
+        fetch('/run_hobby', {
             method: 'POST'
         })
         .then(response => response.text())
         .then(data => {
-            console.log('Script main.py has been executed:', data);
+            console.log('Script hobby.py has been executed:', data);
         })
         .catch(error => {
-            console.error('Error executing script main.py:', error);
+            console.error('Error executing script hobby.py:', error);
         });
 
         // Fungsi untuk menampilkan elemen div setelah 5 detik
-        setTimeout(function() {
-            var startButton = document.getElementById('startbutton');
-            startButton.style.opacity = '1'; // Mengubah opacity menjadi 1 untuk menampilkan elemen dengan efek fade-in
-        }, 5000); // 5000 milidetik = 5 detik
+<!--        setTimeout(function() {-->
+<!--            var startButton = document.getElementById('startbutton');-->
+<!--            startButton.style.opacity = '1'; // Mengubah opacity menjadi 1 untuk menampilkan elemen dengan efek fade-in-->
+<!--        }, 5000); // 5000 milidetik = 5 detik-->
     </script>
   <script src="https://kit.fontawesome.com/e58eb13ca4.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"

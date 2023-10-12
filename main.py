@@ -3,6 +3,7 @@ import pyttsx3
 from gtts import gTTS
 import pygame  # Import modul pygame
 import time
+import sys  # Import modul sys
 
 mp3_file_path = r"awal.mp3"
 
@@ -10,6 +11,7 @@ def speak(text, lang='de'):
     tts = gTTS(text=text, lang=lang)
     tts.save("output.mp3")
     play_mp3("output.mp3")
+    sys.exit()  # Keluar setelah selesai berbicara
 
 def play_mp3(filename):
     pygame.mixer.init()
