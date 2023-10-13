@@ -1,16 +1,10 @@
-import sys
-
 import speech_recognition as sr
 import os
 import pygame
-import pyttsx3
 from gtts import gTTS
-import sys  # Import modul sys
+import sys
+import time
 
-mp3_file_path = r"1.mp3"
-mp3_file_path1 = r"2.mp3"
-mp3_file_path2 = r"3.mp3"
-mp3_file_path3 = r"4.mp3"
 
 def play_mp3(file_path):
     pygame.mixer.init()
@@ -25,55 +19,60 @@ def speak(text, lang='de'):
     play_mp3("output.mp3")
 
 def speech_to_text():
-    # Buat objek recognizer
     recognizer = sr.Recognizer()
 
-    dialogue = [
-        ("hallo! Mir geht es gut.", "Wie ist dein Name?"),
-        ("mein Name ist Hasna, und dir?", "Hallo! Mein Name ist Robot! Ich komme aus Yogyakarta, Indonesien. Woher kommst du?"),
-        ("hallo Adyadroid, Ich komme aus Yogyakarta. Schön dich kennenzulernen.", "schön dich kennenzulernen.")
-    ]
+    dialogue = {
+        ("hallo! mir geht es gut.", "Wie ist dein Name?"),
+        ("mein Name ist": "Hallo! Mein Name ist Robot! Ich komme aus Yogyakarta, Indonesien. Woher kommst du?"),
+        ("hallo Adyadroid, ich komme aus": "Schön dich kennenzulernen.")
+    }
 
-    print("Robot: Hallo! Vielen Dank, dass Sie sich für „Sich vorstellen“ entschieden haben. Wie geht’s es dir?")
-    speak("Hallo! Vielen Dank, dass Sie sich für „Sich vorstellen“ entschieden haben. Wie geht’s es dir?")
+    print("Robot: Hallo! Vielen Dank, dass Sie sich für „Sich vorstellen“ entschieden haben. Wie geht's dir?")
+    speak("Hallo! Vielen Dank, dass Sie sich für „Sich vorstellen“ entschieden haben. Wie geht's dir?")
+
     while True:
-        # Menggunakan microphone sebagai source
         with sr.Microphone() as source:
             print("User: ", end="")
-            recognizer.adjust_for_ambient_noise(source)  # Menghilangkan noise lingkungan
-            audio = recognizer.listen(source)  # Mendengarkan audio
+            recognizer.adjust_for_ambient_noise(source)
+            audio = recognizer.listen(source)
 
             try:
-                # Konversi audio menjadi teks menggunakan Google Web Speech API
-                text = recognizer.recognize_google(audio, language="de-DE").lower()  # Konversi ke huruf kecil
+                text = recognizer.recognize_google(audio, language="de-DE").lower()
                 print(text)
 
                 found_response = False
-                for keyword, response in dialogue:
-                    if keyword.lower() in text:  # Memeriksa dengan kata kunci dalam huruf kecil
+                for keyword, response in dialogue.items():
+                    if keyword in text:
                         print("Robot: " + response)
                         speak(response)
                         found_response = True
+                        if "mein Name ist" in text:
+                            user_name = text.replace("mein Name ist", "").strip()
+                            response = f"Hallo {user_name}! Mein Name ist Adyadroid! Ich komme aus Yogyakarta, Indonesien. Woher kommst du?"
+                            print("Robot: " + response)
+                            speak(response)
+                            if "ich komme aus" in text:
+                                user_city = text.replace("ich komme aus", "").strip()
+                                response = f"Schön dich kennenzulernen. Ich komme auch aus {user_city}."
+                                print("Robot: " + response)
+                                speak(response)
                         break
 
                 if not found_response:
-                    if text == "hi":
-                        play_mp3(mp3_file_path)
-                    elif text == "guten morgen":
-                        play_mp3(mp3_file_path1)
-                    elif text == "stoppen":
+                    if "stoppen" in text:
                         sys.exit()
                     else:
-                        play_mp3(mp3_file_path3)
+                        pass
 
             except sr.UnknownValueError:
                 a = ("Leider kann ich Ihre Rede nicht erkennen")
-                print("Robot: ", a)
+                print("Robot: " + a)
                 speak(a)
             except sr.RequestError as e:
                 b = ("Im Spracherkennungsdienst ist ein Fehler aufgetreten; {0}".format(e))
-                print("Robot:", b)
+                print("Robot: " + b)
                 speak(b)
+
 
 if __name__ == "__main__":
     speech_to_text()

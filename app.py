@@ -26,6 +26,11 @@ def introduction():
     # Render the activity.html page
     return render_template('introduction.html')
 
+@app.route('/angka.html', methods=['GET'])
+def angka():
+    # Render the activity.html page
+    return render_template('angka.html')
+
 @app.route('/run_main', methods=['POST'])
 def run_main():
     result = subprocess.run(["python", "main.py"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
@@ -39,6 +44,11 @@ def run_introduction():
 @app.route('/run_hobby', methods=['POST'])
 def run_hobby():
     result = subprocess.run(["python", "hobby.py"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    return result.stdout
+
+@app.route('/run_angka', methods=['POST'])
+def run_angka():
+    result = subprocess.run(["python", "angka.py"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     return result.stdout
 
 if __name__ == '__main__':

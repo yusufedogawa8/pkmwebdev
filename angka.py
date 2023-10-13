@@ -25,12 +25,12 @@ def speech_to_text():
     recognizer_instance.energy_threshold = 1000
 
     dialogue = [
-        ("Ich sprechen gern. Mein Hobby ist kochen", "Sehr geil! Hören Sie gern Musik?"),
-        ("Ach so. Ich höre gern Musik. Ich höre Rock am liebsten. du magst es?", "Ja, unbedingt.")
+        ("Eins, zwei, drei, vier, fünf, sechs, sieben, acht, neun, zehn.", "Gut gemacht! Und dann 11-20. elf, zwölf, dreizehn, vierzehn, fünfzehn, sechzehn, siebzehn, achtzehn, neunzehn, zwanzig. Jetzt bist du dran"),
+        ("Elf, zwölf, dreizehn, vierzehn, fünfzehn, sechzehn, siebzehn, achtzehn, neunzehn, zwanzig.", "Sehr Gut!")
     ]
 
-    print("Robot: Vielen Dank, dass Sie sich für „Hobby“ entschieden haben.    Hallo, ich bin Adyadroid und ich spreche gern mit Menschen. Was machen Sie gern?")
-    speak("Vielen Dank, dass Sie sich für „Hobby“ entschieden haben.    Hallo, ich bin Adyadroid und ich spreche gern mit Menschen. Was machen Sie gern?")
+    print("Robot: Vielen Dank, dass Sie sich für „die Zahlen 1-20“ entschieden haben.     Hallo! Jetzt lernen wir Zahlen. 1-10. eins, zwei, drei, vier, fünf, sechs, sieben, acht, neun, zehn. Jetzt bist du dran")
+    speak("Vielen Dank, dass Sie sich für „die Zahlen 1-20“ entschieden haben.     Hallo! Jetzt lernen wir Zahlen. 1-10. eins, zwei, drei, vier, fünf, sechs, sieben, acht, neun, zehn. Jetzt bist du dran")
     while True:
         # Menggunakan microphone sebagai source
         with sr.Microphone() as source:
