@@ -23,8 +23,8 @@ def speech_to_text():
 
     dialogue = {
         ("hallo! mir geht es gut.", "Wie ist dein Name?"),
-        ("mein Name ist": "Hallo! Mein Name ist Robot! Ich komme aus Yogyakarta, Indonesien. Woher kommst du?"),
-        ("hallo Adyadroid, ich komme aus": "Schön dich kennenzulernen.")
+        ("mein Name ist", "Hallo! Mein Name ist Robot! Ich komme aus Yogyakarta, Indonesien. Woher kommst du?"),
+        ("hallo Adyadroid, ich komme aus", "Schön dich kennenzulernen.")
     }
 
     print("Robot: Hallo! Vielen Dank, dass Sie sich für „Sich vorstellen“ entschieden haben. Wie geht's dir?")
