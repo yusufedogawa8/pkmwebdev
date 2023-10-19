@@ -26,11 +26,12 @@ def speech_to_text():
 
     dialogue = [
         ("Ich sprechen gern. Mein Hobby ist kochen", "Sehr geil! Hören Sie gern Musik?"),
-        ("Ach so. Ich höre gern Musik. Ich höre Rock am liebsten. du magst es?", "Ja, unbedingt.")
+        ("Ach so. Ich höre gern Musik. Ich höre Rock am liebsten. du magst es?", "Ja, unbedingt."),
+        ("Hobi saya ...", "Oh, Hobi saya juga adalah {}!")
     ]
 
-    print("Robot: Vielen Dank, dass Sie sich für „Hobby“ entschieden haben.    Hallo, ich bin Adyadroid und ich spreche gern mit Menschen. Was machen Sie gern?")
-    speak("Vielen Dank, dass Sie sich für „Hobby“ entschieden haben.    Hallo, ich bin Adyadroid und ich spreche gern mit Menschen. Was machen Sie gern?")
+    # ...
+
     while True:
         # Menggunakan microphone sebagai source
         with sr.Microphone() as source:
@@ -41,29 +42,32 @@ def speech_to_text():
             try:
                 # Konversi audio menjadi teks menggunakan Google Web Speech API
                 text = recognizer.recognize_google(audio, language="de-DE").lower()
-                print(text)
+                print("User: " + text)
 
                 found_response = False
                 for keyword, response in dialogue:
+                    if "hobi saya" in keyword.lower() and "..." in keyword.lower():
+                        # Ganti placeholder dengan hobi yang disebutkan oleh pengguna
+                        keyword = keyword.replace("...", text)
                     if keyword.lower() in text:
-                        print("Robot: " + response)
-                        speak(response)
+                        print("Robot: " + response.format(text))
+                        speak(response.format(text))
                         found_response = True
                         break
 
                 if not found_response:
-                    if text == "stoppen" :
+                    if text == "stoppen":
                         sys.exit()  # Keluar setelah selesai berbicara
-                    else :
+                    else:
                         pass
 
             except sr.UnknownValueError:
                 a = ("Leider kann ich Ihre Rede nicht erkennen")
-                print("Robot: ", a)
+                print("Robot: " + a)
                 speak(a)
             except sr.RequestError as e:
                 b = ("Im Spracherkennungsdienst ist ein Fehler aufgetreten; {0}".format(e))
-                print("Robot:", b)
+                print("Robot:" + b)
                 speak(b)
 
 if __name__ == "__main__":

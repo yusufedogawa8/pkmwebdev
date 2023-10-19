@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template
 import subprocess
 
 app = Flask(__name__, static_url_path='/static')
@@ -13,8 +13,21 @@ def category():
 
 @app.route('/activity.html', methods=['GET'])
 def activity():
+    if not found_response:
+        if text == "stoppen":
+            # Redirect to activity.html
+            return render_template('activity.html')
+        else:
+            pass
+        # Handle other conditions
+    else:
+        pass
+    # Handle other conditions
+
+@app.route('/vocab.html', methods=['GET'])
+def vocab():
     # Render the activity.html page
-    return render_template('activity.html')
+    return render_template('vocab.html')
 
 @app.route('/hobby.html', methods=['GET'])
 def hobby():
