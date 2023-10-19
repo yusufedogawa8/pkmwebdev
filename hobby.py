@@ -5,6 +5,19 @@ import pyttsx3
 from gtts import gTTS
 import time
 import sys  # Import modul sys
+from ctypes import cast, POINTER
+from comtypes import CLSCTX_ALL
+from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
+
+def set_system_volume(volume_level):
+    devices = AudioUtilities.GetSpeakers()
+    interface = devices.Activate(
+        IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
+    volume = cast(interface, POINTER(IAudioEndpointVolume))
+    volume.SetMasterVolumeLevelScalar(volume_level, None)
+
+# Set the system volume to reduce it by 6 dB (half volume)
+set_system_volume(0.9)
 
 def play_mp3(file_path):
     pygame.mixer.init()

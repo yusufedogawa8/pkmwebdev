@@ -4,8 +4,21 @@ from gtts import gTTS
 import pygame  # Import modul pygame
 import time
 import sys  # Import modul sys
+from ctypes import cast, POINTER
+from comtypes import CLSCTX_ALL
+from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
 
 mp3_file_path = r"awal.mp3"
+
+def set_system_volume(volume_level):
+    devices = AudioUtilities.GetSpeakers()
+    interface = devices.Activate(
+        IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
+    volume = cast(interface, POINTER(IAudioEndpointVolume))
+    volume.SetMasterVolumeLevelScalar(volume_level, None)
+
+# Set the system volume to reduce it by 6 dB (half volume)
+set_system_volume(0.9)
 
 def speak(text, lang='de'):
     tts = gTTS(text=text, lang=lang)
