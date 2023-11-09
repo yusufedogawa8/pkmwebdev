@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Adyadroid Team">
+  <meta name="generator" content="Hugo 0.118.2">
+  <title>Di Restauran | Adyadroid</title>
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <link href="static/speaking.css" rel="stylesheet">
+  <style>
+        .fade-in-button {
+            opacity: 0; /* Set elemen menjadi tidak terlihat secara awal */
+            transition: opacity 1s ease-in-out; /* Animasi transisi untuk mengubah opacity selama 1 detik */
+        }
+    </style>
+</head>
+
+<body class="d-flex align-items-center py-4">
+  <main class="form-signin w-100 m-auto">
+    <div class="text-center">
+      <div class="container text-center">
+        <div class="row align-items-center justify-content-center center-container">
+          <div class="col-12">
+            <div class="emoji-container">
+              <div class="emoji">
+                <div class="eye left-eye"></div>
+                <div class="eye right-eye"></div>
+                <div class="mouth"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="result-container" class="text-center mt-4"></div>
+  </main>
+  <script>
+        // Menjalankan speaking.py saat halaman introduction.html dimuat
+        fetch('/run_restoran', {
+            method: 'POST'
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log('Script angka.py has been executed:', data);
+        })
+        .catch(error => {
+            console.error('Error executing script angka.py:', error);
+        });
+
+        // Fungsi untuk menampilkan elemen div setelah 5 detik
+<!--        setTimeout(function() {-->
+<!--            var startButton = document.getElementById('startbutton');-->
+<!--            startButton.style.opacity = '1'; // Mengubah opacity menjadi 1 untuk menampilkan elemen dengan efek fade-in-->
+<!--        }, 5000); // 5000 milidetik = 5 detik-->
+    </script>
+  <script src="https://kit.fontawesome.com/e58eb13ca4.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

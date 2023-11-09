@@ -2,21 +2,8 @@ import speech_recognition as sr
 import os
 import pygame
 from gtts import gTTS
-import time
 import sys
-from ctypes import cast, POINTER
-from comtypes import CLSCTX_ALL
-from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
-
-def set_system_volume(volume_level):
-    devices = AudioUtilities.GetSpeakers()
-    interface = devices.Activate(
-        IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
-    volume = cast(interface, POINTER(IAudioEndpointVolume))
-    volume.SetMasterVolumeLevelScalar(volume_level, None)
-
-# Set the system volume to reduce it by 6 dB (half volume)
-set_system_volume(0.9)
+import time
 
 def play_mp3(file_path):
     pygame.mixer.init()
@@ -33,16 +20,15 @@ def speak(text, lang='de'):
 def speech_to_text():
     # Buat objek recognizer
     recognizer = sr.Recognizer()
-    recognizer_instance = sr.Recognizer()
-    recognizer_instance.energy_threshold = 1000
 
     dialogue = [
-        ("Hallo, ich bin Robot und ich spreche gern mit Menschen. Was machen Sie gern?", "Ich (...) gern / Mein Hobby ist/sind (...)"),
-        ("Sehr geil! Hören Sie gern Musik?", "Ach so. Ich höre gern Musik. Ich höre Rock am liebsten. Über dein /ihr Hobby, du magst es?"),
-        ("Ja... unbedingt / Nicht so gern.", "")
+        ("Was tut Ihnen weh? Haben Sie Schmerzen?", "Mir geht es nicht gut."),
+        ("Haben Sie Fieber?", "Ich habe (Kopfschmerzen/ Halsschmerzen/ Bauchschmerzen....)"),
+        ("Mein (Kopf/Hals/Bauch…) tut weh.", "Ich schreibe/gebe Ihnen ein Rezept für (Tabletten/ Tropfen/ eine Salbe…). Nehmen Sie (Tabletten/ Tropfen/ eine Salbe/…) vor dem Essen."),
+        ("Darf ich (....)?", "")
     ]
 
-    # ...
+    print("Robot: Gespräche beim Arzt (Percakapan saat ke dokter)")
 
     while True:
         # Menggunakan microphone sebagai source
@@ -58,9 +44,9 @@ def speech_to_text():
 
                 found_response = False
                 for keyword, response in dialogue:
-                    if "..." in response:
+                    if "..." in keyword:
                         # Ganti placeholder dengan jawaban user
-                        response = response.replace("...", text)
+                        keyword = keyword.replace("(...)", text)
                     if keyword.lower() in text:
                         print("Robot: " + response)
                         speak(response)

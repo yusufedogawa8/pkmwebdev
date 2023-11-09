@@ -2,21 +2,8 @@ import speech_recognition as sr
 import os
 import pygame
 from gtts import gTTS
-import time
 import sys
-from ctypes import cast, POINTER
-from comtypes import CLSCTX_ALL
-from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
-
-def set_system_volume(volume_level):
-    devices = AudioUtilities.GetSpeakers()
-    interface = devices.Activate(
-        IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
-    volume = cast(interface, POINTER(IAudioEndpointVolume))
-    volume.SetMasterVolumeLevelScalar(volume_level, None)
-
-# Set the system volume to reduce it by 6 dB (half volume)
-set_system_volume(0.9)
+import time
 
 def play_mp3(file_path):
     pygame.mixer.init()
@@ -31,18 +18,19 @@ def speak(text, lang='de'):
     play_mp3("output.mp3")
 
 def speech_to_text():
-    # Buat objek recognizer
     recognizer = sr.Recognizer()
-    recognizer_instance = sr.Recognizer()
-    recognizer_instance.energy_threshold = 1000
 
-    dialogue = [
-        ("Hallo, ich bin Robot und ich spreche gern mit Menschen. Was machen Sie gern?", "Ich (...) gern / Mein Hobby ist/sind (...)"),
-        ("Sehr geil! Hören Sie gern Musik?", "Ach so. Ich höre gern Musik. Ich höre Rock am liebsten. Über dein /ihr Hobby, du magst es?"),
-        ("Ja... unbedingt / Nicht so gern.", "")
-    ]
+    dialogue = {
+        ("Ja. OK!", "Was ist das?"),
+        ("Das ist eine Kirche", "Super! Ist die Kirche Rot?"),
+        ("Nein, die Kirche ist weiß", "Ach so. Und dann für dieses Bild. Ist das ein Bahnhof?"),
+        ("Nein. Das ist Flughafen.", "Die letzte Frage. Ist das ein Hotel?"),
+        ("Ja, das ist das Hotel", "Wie heißt das Hotel?"),
+        ("das Hotel heißt Novotel.", "Wunderbar!")
+    }
 
-    # ...
+    print("Robot: Hallo! Ich habe ein paar Bilder, aber ich weiß nicht, was es ist. Können Sie mir helfen?")
+    speak("Hallo! Ich habe ein paar Bilder, aber ich weiß nicht, was es ist. Können Sie mir helfen?")
 
     while True:
         # Menggunakan microphone sebagai source
@@ -54,13 +42,10 @@ def speech_to_text():
             try:
                 # Konversi audio menjadi teks menggunakan Google Web Speech API
                 text = recognizer.recognize_google(audio, language="de-DE").lower()
-                print("User: " + text)
+                print(text)
 
                 found_response = False
                 for keyword, response in dialogue:
-                    if "..." in response:
-                        # Ganti placeholder dengan jawaban user
-                        response = response.replace("...", text)
                     if keyword.lower() in text:
                         print("Robot: " + response)
                         speak(response)
@@ -75,12 +60,14 @@ def speech_to_text():
 
             except sr.UnknownValueError:
                 a = ("Leider kann ich Ihre Rede nicht erkennen")
-                print("Robot: " + a)
+                print("Robot: ", a)
                 speak(a)
             except sr.RequestError as e:
                 b = ("Im Spracherkennungsdienst ist ein Fehler aufgetreten; {0}".format(e))
-                print("Robot: " + b)
+                print("Robot:", b)
                 speak(b)
 
+
 if __name__ == "__main__":
-    speech_to_text()
+    result_text = speech_to_text()  # Menyimpan hasil teks dari speech_to_text()
+    print(result_text)  # Cetak teks hasil suara
